@@ -13,6 +13,7 @@ class Fish extends React.Component {
         </h3>
         <p>{desc}</p>
         {/* <p>{status}</p> */}
+        <button >ADD TO CART</button>
       </li>
     );
   }
