@@ -75,9 +75,13 @@ class App extends React.Component {
     //2. Either add to the order or update the number in our order
     order[key] = order[key] + 1 || 1;
     //3. Set the new state
-    this.setState({
-      order
-    });
+    this.setState({ order });
+  };
+
+  deleteOrder = key => {
+    const order = { ...this.state.order };
+     delete order[key]; //since not mirroring to the firebase
+    this.setState({ order });
   };
 
   render() {
@@ -98,7 +102,7 @@ class App extends React.Component {
             })}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order fishes={this.state.fishes} order={this.state.order} deleteOrder={this.deleteOrder}/>
         <Inventory
           addFish={this.addFish}
           updateFish={this.updateFish}
