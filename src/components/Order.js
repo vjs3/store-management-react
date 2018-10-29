@@ -8,9 +8,8 @@ class Order extends React.Component {
     const isAvailable = fish && fish.status === "available";
     //since local storage is gonna load immediately and getting data from firebase takes some time,
     //we need to load fish before we continue
-    if (!fish) {
-      return null;
-    }
+    if (!fish) return null;
+
     if (!isAvailable) {
       return (
         <li key={key}>
@@ -22,7 +21,7 @@ class Order extends React.Component {
       <li key={key}>
         {count} lbs {fish.name}
         {formatPrice(count * fish.price)}
-        <button onClick={()=>this.props.removeFromOrder(key)}>&times;</button>
+        <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
       </li>
     );
   };
@@ -35,6 +34,7 @@ class Order extends React.Component {
       if (isAvailable) {
         return prevTotal + count * fish.price;
       }
+      return prevTotal;
     }, 0);
     return (
       <div className="order-wrap">
