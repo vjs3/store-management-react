@@ -26,8 +26,8 @@
 }
 .count-enter {
   background: #f00;
-  -webkit-transition: 5s;
-  transition: 5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
 }
@@ -40,8 +40,8 @@
   background: #000;
   -webkit-transform: translateY(0);
           transform: translateY(0);
-  -webkit-transition: 5s;
-  transition: 5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   position: absolute;
   left: 0;
   bottom: 0;
