@@ -48,9 +48,20 @@ class Inventory extends React.Component {
 
   render() {
     //1. Check if user is logged in
-    // if (!this.state.uid) {
-    //   return <Login authenticate={this.authenticate} />;
-    // }
+    if (!this.state.uid) {
+      return <Login authenticate={this.authenticate} />;
+    }
+
+    //2. Check if the logged in user is owner of the store
+    if (this.state.uid !== this.state.owner) {
+      return (
+        <div>
+          <p>Sorry you are not the owner of the store!</p>
+        </div>
+      );
+    }
+
+    //If no objection then user must be the owner, hence render the inventory
     return (
       <div className="inventory">
         <h2>Inventory</h2>
