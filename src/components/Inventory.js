@@ -19,8 +19,12 @@ class Inventory extends React.Component {
     loadSampleFishes: PropTypes.func
   };
 
+  logout = async () => {
+    await firebase.auth().signOut();
+    this.setState({ uid: null });
+  };
+
   authHandler = async authData => {
-    // console.log(authData);
     //1. Look up the current store in firebase database
     const store = await base.fetch(this.props.storeId, { context: this });
     console.log(store);
@@ -47,6 +51,7 @@ class Inventory extends React.Component {
   };
 
   render() {
+    const logout = <button onClick={this.logout}>Logout</button>;
     //1. Check if user is logged in
     if (!this.state.uid) {
       return <Login authenticate={this.authenticate} />;
@@ -57,6 +62,7 @@ class Inventory extends React.Component {
       return (
         <div>
           <p>Sorry you are not the owner of the store!</p>
+          {logout}
         </div>
       );
     }
@@ -65,6 +71,7 @@ class Inventory extends React.Component {
     return (
       <div className="inventory">
         <h2>Inventory</h2>
+        {logout}
         {Object.keys(this.props.fishes).map(key => (
           <EditFishForm
             key={key}
