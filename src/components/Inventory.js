@@ -19,6 +19,15 @@ class Inventory extends React.Component {
     loadSampleFishes: PropTypes.func
   };
 
+  //on refresh, it should check if a user is logged in
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.authHandler({ user });
+      }
+    });
+  }
+
   logout = async () => {
     await firebase.auth().signOut();
     this.setState({ uid: null });
